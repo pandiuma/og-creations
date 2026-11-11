@@ -8,5 +8,5 @@ python-dotenv>=1.0
 gunicorn>=23.0
 whitenoise>=6.8
 cloudinary>=1.47.0
-git+https://github.com/klis87/django-cloudinary-storage.git@4d17f7db908c4fe4618ff9595fb1fb1c5c722fbe
+django-cloudinary-storage @ git+https://github.com/klis87/django-cloudinary-storage.git@4d17f7db908c4fe4618ff9595fb1fb1c5c722fbe
 
