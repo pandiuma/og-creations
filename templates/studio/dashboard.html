@@ -1,0 +1,132 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <title>OG CREATIONS Admin Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{% static 'css/site.css' %}">
+
+</head>
+
+<body class="dashboard-page">
+
+<header class="dashboard-header">
+
+    <h2>OG CREATIONS</h2>
+
+    <a href="/admin/">Manage Website</a>
+
+</header>
+
+
+<main class="dashboard-container">
+
+    <p class="eyebrow">ADMIN PANEL</p>
+
+    <h1>Welcome to Dashboard</h1>
+
+    <p>Manage your website content and enquiries.</p>
+
+
+    <div class="dashboard-cards">
+
+        <div class="dashboard-card">
+            <h3>Total Enquiries</h3>
+            <strong>{{ enquiry_count }}</strong>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>New Enquiries</h3>
+            <strong>{{ new_enquiry_count }}</strong>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Total Services</h3>
+            <strong>{{ service_count }}</strong>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Portfolio Projects</h3>
+            <strong>{{ project_count }}</strong>
+        </div>
+
+    </div>
+
+
+    <section class="dashboard-table">
+
+        <h2>Recent Enquiries</h2>
+
+        <div class="table-scroll">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Service</th>
+                        <th>Status</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for enquiry in recent_enquiries %}
+
+                        <tr>
+
+                            <td>{{ enquiry.name }}</td>
+
+                            <td>{{ enquiry.email }}</td>
+
+                            <td>{{ enquiry.phone }}</td>
+
+                            <td>{{ enquiry.service }}</td>
+
+                            <td>
+                                {{ enquiry.get_status_display }}
+                            </td>
+
+                        </tr>
+
+                    {% empty %}
+
+                        <tr>
+                            <td colspan="5">
+                                No enquiries available.
+                            </td>
+                        </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <a href="/admin/" class="primary-button">
+        Open Full Admin Panel →
+    </a>
+
+</main>
+
+</body>
+</html>

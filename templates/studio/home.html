@@ -1,0 +1,1327 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>OG CREATIONS | Concept to Creation</title>
+
+    <link rel="stylesheet" href="{% static 'css/site.css' %}">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
+</head>
+
+<body>
+
+    <header class="header">
+
+        <a href="#home" class="logo">
+            <span class="logo-circle">OG</span>
+
+            <span>
+                <strong>OG CREATIONS</strong>
+                <small>CONCEPT TO CREATION</small>
+            </span>
+        </a>
+
+        <button class="menu-toggle" aria-label="Open menu">
+            ☰
+        </button>
+
+        <nav class="navigation">
+
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#works">Works</a>
+            <a href="#process">Process</a>
+            <a href="#contact">Contact</a>
+
+            <a href="#contact" class="nav-button">
+                Start a Project →
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- HERO SECTION -->
+
+    <section class="hero" id="home">
+
+        {% if hero and hero.background_image %}
+
+        <img class="hero-background" src="{{ hero.background_image.url }}" alt="Film production">
+
+        {% endif %}
+
+        <div class="hero-content">
+
+            <p class="eyebrow">
+                {% if hero %}
+                {{ hero.eyebrow }}
+                {% else %}
+                FILM & CREATIVE PRODUCTION · CHENNAI
+                {% endif %}
+            </p>
+
+            <h1>
+
+                {% if hero %}
+
+                {{ hero.title_line_one }}
+
+                <br>
+
+                <em>{{ hero.title_line_two }}</em>
+
+                {% else %}
+
+                From Concept
+
+                <br>
+
+                <em>to Creation</em>
+
+                {% endif %}
+
+            </h1>
+
+            <p class="hero-description">
+
+                {% if hero %}
+
+                {{ hero.description }}
+
+                {% else %}
+
+                OG Creations brings stories to the screen –
+                movies, web series, commercials, casting,
+                modelling and events, produced with cinematic care.
+
+                {% endif %}
+
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="{% if hero and hero.primary_button_url %}{{ hero.primary_button_url }}{% else %}#contact{% endif %}"
+                    class="primary-button">
+
+                    {% if hero and hero.primary_button_text %}
+                    {{ hero.primary_button_text }}
+                    {% else %}
+                    Start a Project
+                    {% endif %}
+
+                    →
+
+                </a>
+
+                <a href="{% if hero and hero.secondary_button_url %}{{ hero.secondary_button_url }}{% else %}#services{% endif %}"
+                    class="secondary-button">
+
+                    {% if hero and hero.secondary_button_text %}
+                    {{ hero.secondary_button_text }}
+                    {% else %}
+                    Explore Our Craft
+                    {% endif %}
+
+                </a>
+
+            </div>
+
+            <p class="hero-tags">
+
+                {% if hero and hero.production_tags %}
+
+                {{ hero.production_tags }}
+
+                {% else %}
+
+                DIRECTION • CINEMATOGRAPHY • ART DIRECTION • POST
+
+                {% endif %}
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- MARQUEE SECTION -->
+
+    <section class="marquee">
+
+        <div class="marquee-content">
+
+            {% for item in marquee_items %}
+
+            <span>{{ item.label }}</span>
+            <b>✦</b>
+
+            {% empty %}
+
+            <span>MODELLING</span>
+            <b>✦</b>
+            <span>EVENTS</span>
+            <b>✦</b>
+            <span>MOVIES</span>
+            <b>✦</b>
+            <span>WEB SERIES</span>
+            <b>✦</b>
+            <span>CASTING</span>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT SECTION -->
+
+    <section class="about section-padding" id="about">
+
+        <div class="about-content">
+
+            <p class="eyebrow">THE STUDIO</p>
+
+            <h2>
+
+                {% if about %}
+
+                {{ about.heading_line_one }}
+
+                <br>
+
+                <em>{{ about.heading_highlight }}</em>
+
+                {% else %}
+
+                Built for stories that deserve
+
+                <br>
+
+                <em>the big screen.</em>
+
+                {% endif %}
+
+            </h2>
+
+            {% if about %}
+
+            <p>{{ about.paragraph_one }}</p>
+            <p>{{ about.paragraph_two }}</p>
+
+            {% else %}
+
+            <p>
+                OG CREATIONS is a film and creative production
+                house devoted to the craft of cinema –
+                direction, cinematography, casting, art and post,
+                held to a single standard of finish.
+            </p>
+
+            <p>
+                We keep our sets bright and our crews sharp. Whether the brief is a
+                feature film, a streaming series or a sixty-second spot, the work is
+                art-directed frame by frame - nothing left to default.
+            </p>
+
+            {% endif %}
+
+            <a href="#services" class="secondary-button">
+                See What We Produce →
+            </a>
+
+        </div>
+
+
+        <div class="about-gallery">
+
+            {% if about and about.image_one %}
+
+            <img src="{{ about.image_one.url }}" alt="Studio">
+
+            {% else %}
+
+            <div class="placeholder">Studio Stories</div>
+
+            {% endif %}
+
+            {% if about and about.image_two %}
+
+            <img src="{{ about.image_two.url }}" alt="Film lighting">
+
+            {% endif %}
+
+            {% if about and about.image_three %}
+
+            <img src="{{ about.image_three.url }}" alt="Production team">
+
+            {% endif %}
+
+        </div>
+
+    </section>
+
+
+    <!-- SERVICES SECTION -->
+
+    <section class="services section-padding" id="services">
+
+        <div class="section-title">
+
+            <p class="eyebrow">OUR SERVICES</p>
+
+            <h2>What We Create</h2>
+
+            <span></span>
+
+        </div>
+
+
+        <div class="service-grid">
+
+            {% for service in services %}
+
+            <article class="service-card">
+
+                {% if service.image %}
+
+                <img src="{{ service.image.url }}" alt="{{ service.title }}">
+
+                {% endif %}
+
+                <span class="service-number">
+                    {{ service.number|stringformat:"02d" }}
+                </span>
+
+                <div class="service-details">
+
+                    <h3>{{ service.title }}</h3>
+
+                    <p>{{ service.short_description }}</p>
+
+                </div>
+
+            </article>
+
+            {% empty %}
+
+            <p>Add services from the Admin Panel.</p>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+     SECTION 1: OUR WORKS / FEATURED PROJECTS
+========================================= -->
+
+    <section class="our-works-section" id="works">
+
+        <div class="our-works-header">
+
+            <div class="works-heading">
+                <span class="works-eyebrow">FEATURED PROJECTS</span>
+            </div>
+
+            <div class="works-filters">
+                <button class="work-filter active" data-filter="all">ALL</button>
+                <button class="work-filter" data-filter="movies">MOVIES</button>
+                <button class="work-filter" data-filter="web-series">WEB SERIES</button>
+                <button class="work-filter" data-filter="ad-shoots">AD SHOOTS</button>
+                <button class="work-filter" data-filter="modeling">MODELING</button>
+                <button class="work-filter" data-filter="events">EVENTS</button>
+            </div>
+
+        </div>
+
+        <div class="works-projects-grid">
+
+            {% for project in projects %}
+
+            <article class="work-project-card
+            {% if forloop.counter == 1 %}work-project-large{% endif %}" data-category="{{ project.category|lower }}">
+
+                {% if project.cover_image %}
+                <div class="work-project-image">
+                    <img src="{{ project.cover_image.url }}" alt="{{ project.title }}" loading="lazy">
+                </div>
+                {% endif %}
+
+                <div class="work-project-content">
+
+                    <span class="work-project-category">
+                        {{ project.get_category_display }}
+                    </span>
+
+                    <h3>{{ project.title }}</h3>
+
+                    {% if project.client %}
+                    <p class="work-project-client">
+                        {{ project.client }}
+                    </p>
+                    {% endif %}
+
+                    {% if project.description %}
+                    <p class="work-project-description">
+                        {{ project.description }}
+                    </p>
+                    {% endif %}
+
+                    {% if project.video_url %}
+                    <a href="{{ project.video_url }}" class="work-project-link" target="_blank"
+                        rel="noopener noreferrer">
+                        VIEW PROJECT →
+                    </a>
+                    {% endif %}
+
+                </div>
+
+            </article>
+
+            {% empty %}
+
+            <p class="works-empty-message">
+                No projects have been added yet.
+            </p>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         SECTION 2: BEHIND THE SCENES
+    ========================================= -->
+
+    <section class="behind-scenes-section" id="behind-scenes">
+
+        <div class="behind-scenes-heading">
+
+            <span class="behind-scenes-eyebrow">
+                BEHIND THE SCENES
+            </span>
+
+        </div>
+
+        <div class="behind-scenes-grid">
+
+            <!-- LEFT: IMAGES 1 AND 2 -->
+
+            <div class="behind-scenes-left">
+
+                {% for item in behind_scenes_images|slice:"0:2" %}
+
+                <div class="behind-scenes-item">
+
+                    <img src="{{ item.image.url }}" alt="{{ item.title }}" loading="lazy">
+
+                    <div class="behind-scenes-overlay">
+
+                        {% if item.title %}
+                        <h3>{{ item.title }}</h3>
+                        {% endif %}
+
+                        {% if item.caption %}
+                        <p>{{ item.caption }}</p>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+
+            <!-- CENTRE: LARGE IMAGE 3 -->
+
+            <div class="behind-scenes-center">
+
+                {% for item in behind_scenes_images|slice:"2:3" %}
+
+                <div class="behind-scenes-item">
+
+                    <img src="{{ item.image.url }}" alt="{{ item.title }}" loading="lazy">
+
+                    <div class="behind-scenes-overlay">
+
+                        {% if item.title %}
+                        <h3>{{ item.title }}</h3>
+                        {% endif %}
+
+                        {% if item.caption %}
+                        <p>{{ item.caption }}</p>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+
+            <!-- RIGHT: IMAGES 4 AND 5 -->
+
+            <div class="behind-scenes-right">
+
+                {% for item in behind_scenes_images|slice:"3:5" %}
+
+                <div class="behind-scenes-item">
+
+                    <img src="{{ item.image.url }}" alt="{{ item.title }}" loading="lazy">
+
+                    <div class="behind-scenes-overlay">
+
+                        {% if item.title %}
+                        <h3>{{ item.title }}</h3>
+                        {% endif %}
+
+                        {% if item.caption %}
+                        <p>{{ item.caption }}</p>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- OUR PRODUCTION PROCESS SECTION -->
+
+    <section class="production-process-section" id="production-process">
+
+        <div class="production-process-container">
+
+            <div class="production-process-heading">
+
+                <span class="production-process-eyebrow">
+                    OUR PRODUCTION PROCESS
+                </span>
+
+                <h2>
+                    Five Stages, <em>One Vision</em>
+                </h2>
+
+            </div>
+
+            <div class="production-process-grid">
+
+                {% for step in steps %}
+
+                <div class="production-process-card">
+
+                    <span class="production-step-number">
+                        {% if forloop.counter < 10 %}0{% endif %}{{ forloop.counter }} </span>
+
+                            <h3>{{ step.title }}</h3>
+
+                            <p>{{ step.description }}</p>
+
+                </div>
+
+                {% empty %}
+
+                <p>No production stages added yet.</p>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================
+         UPCOMING PROJECTS SECTION
+    ===================================== -->
+
+    <section class="upcoming-projects-section" id="upcoming-projects">
+
+        <div class="upcoming-projects-container">
+
+            <!-- SECTION HEADING -->
+
+            <div class="upcoming-projects-heading">
+
+                <div class="upcoming-heading-title">
+                    <h2>UPCOMING PROJECTS</h2>
+                    <span class="upcoming-heading-line"></span>
+                </div>
+
+                <p>
+                    EXCITING STORIES &nbsp; • &nbsp;
+                    POWERFUL PERFORMANCES &nbsp; • &nbsp;
+                    COMING SOON
+                </p>
+
+            </div>
+
+            <!-- PROJECTS -->
+
+            <div class="upcoming-projects-list">
+
+                {% for project in upcoming_projects %}
+
+                <div class="upcoming-project-card">
+
+                    <!-- LEFT CONTENT PANEL -->
+
+                    <div class="upcoming-project-details">
+
+                        <!-- LEFT COLUMN: PROJECT INFORMATION -->
+
+                        <div class="upcoming-project-info">
+
+                            <span class="upcoming-label">
+                                {{ project.project_label }}
+                            </span>
+
+                            <h3>{{ project.title }}</h3>
+
+                            <p class="upcoming-tagline">
+                                {{ project.tagline|linebreaksbr }}
+                            </p>
+
+                            <div class="upcoming-release">
+                                <h4>{{ project.release_date }}</h4>
+                                <span>{{ project.release_note }}</span>
+                            </div>
+
+                        </div>
+
+                        <!-- RIGHT COLUMN: CAST DETAILS -->
+
+                        <div class="upcoming-project-cast">
+
+                            {% if project.lead_actor %}
+                            <div class="cast-item">
+                                <span>LEAD ACTOR</span>
+                                <h4>{{ project.lead_actor }}</h4>
+                            </div>
+                            {% endif %}
+
+                            {% if project.lead_actress %}
+                            <div class="cast-item">
+                                <span>LEAD ACTRESS</span>
+                                <h4>{{ project.lead_actress }}</h4>
+                            </div>
+                            {% endif %}
+
+                            {% if project.supporting_cast %}
+                            <div class="cast-item">
+                                <span>SUPPORTING CAST</span>
+                                <h4>{{ project.supporting_cast|linebreaksbr }}</h4>
+                            </div>
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                    <!-- RIGHT SIDE: PROJECT POSTER -->
+
+                    <div class="upcoming-project-poster">
+
+                        {% if project.poster %}
+
+                        <img src="{{ project.poster.url }}" alt="{{ project.title }} poster">
+
+                        {% else %}
+
+                        <div class="poster-placeholder">
+                            <span>POSTER COMING SOON</span>
+                        </div>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+                {% empty %}
+
+                <p class="no-upcoming-projects">
+                    New projects coming soon.
+                </p>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- WHY CHOOSE OG CREATIONS SECTION -->
+
+    <section class="why-choose-section" id="why-choose">
+
+        <div class="why-choose-container">
+
+            <!-- LEFT SIDE: MAIN IMAGE -->
+
+            <div class="why-choose-image">
+
+                {% if why_choose and why_choose.main_image %}
+
+                <img src="{{ why_choose.main_image.url }}" alt="OG Creations Film Production" loading="lazy">
+
+                {% else %}
+
+                <div class="why-choose-image-placeholder">
+                    OG CREATIONS
+                </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- RIGHT SIDE: CONTENT -->
+
+            <div class="why-choose-content">
+
+                {% if why_choose %}
+
+                <span class="why-choose-eyebrow">
+                    {{ why_choose.eyebrow }}
+                </span>
+
+                <h2>
+                    {{ why_choose.heading }}
+                </h2>
+
+                {% else %}
+
+                <span class="why-choose-eyebrow">
+                    WHY CHOOSE OG CREATIONS
+                </span>
+
+                <h2>
+                    Crafted with Intent
+                </h2>
+
+                {% endif %}
+
+
+                <!-- FEATURES -->
+
+                <div class="why-choose-features">
+
+                    {% for feature in why_choose_features %}
+
+                    <div class="why-choose-feature">
+
+                        <span class="why-choose-number">
+                            {{ feature.number|stringformat:"02d" }}
+                        </span>
+
+                        <div class="why-choose-feature-details">
+
+                            <h3>{{ feature.title }}</h3>
+
+                            {% if feature.description %}
+                            <p>{{ feature.description }}</p>
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                    {% empty %}
+
+                    <p>Add Why Choose features from the Admin Panel.</p>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- END WHY CHOOSE SECTION -->
+
+
+    <!-- CONTACT SECTION -->
+
+    <section class="contact-section" id="contact" {% if contact and contact.background_image %}
+        style="background-image: url('{{ contact.background_image.url }}');" {% endif %}>
+
+        <!-- OVERLAY -->
+
+        <div class="contact-overlay"></div>
+
+        <div class="contact-main">
+
+            <!-- LEFT SIDE: CONTACT INFORMATION -->
+
+            <div class="contact-information">
+
+                <!-- CONTACT HEADING -->
+
+                <span class="contact-eyebrow">
+                    {% if contact %}
+                    {{ contact.eyebrow }}
+                    {% else %}
+                    START A PROJECT
+                    {% endif %}
+                </span>
+
+                <h2>
+                    {% if contact %}
+                    {{ contact.heading_line_one }}<br>
+                    <em>{{ contact.heading_highlight }}</em><br>
+                    {{ contact.heading_line_two }}
+                    {% else %}
+                    Have a Story to<br>
+                    <em>Tell?</em><br>
+                    Let's Bring It to Life.
+                    {% endif %}
+                </h2>
+
+
+                <!-- CONTACT DETAILS -->
+
+                <div class="contact-details">
+
+                    <!-- PHONE -->
+
+                    <div class="contact-detail">
+
+                        <span>
+                            {% if contact %}
+                            {{ contact.phone_label }}
+                            {% else %}
+                            PHONE
+                            {% endif %}
+                        </span>
+
+                        <a href="tel:{% if contact %}{{ contact.phone }}{% else %}9884277001{% endif %}">
+                            {% if contact %}
+                            {{ contact.phone }}
+                            {% else %}
+                            9884277001
+                            {% endif %}
+                        </a>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="contact-detail">
+
+                        <span>
+                            {% if contact %}
+                            {{ contact.email_label }}
+                            {% else %}
+                            EMAIL
+                            {% endif %}
+                        </span>
+
+                        <a
+                            href="mailto:{% if contact %}{{ contact.email }}{% else %}ogcreationsofficial@gmail.com{% endif %}">
+                            {% if contact %}
+                            {{ contact.email }}
+                            {% else %}
+                            ogcreationsofficial@gmail.com
+                            {% endif %}
+                        </a>
+
+                    </div>
+
+
+                    <!-- STUDIO ADDRESS -->
+
+                    <div class="contact-detail">
+
+                        <span>
+                            {% if contact %}
+                            {{ contact.studio_label }}
+                            {% else %}
+                            STUDIO
+                            {% endif %}
+                        </span>
+
+                        <p>
+                            {% if contact %}
+                            {{ contact.studio_address }}
+                            {% else %}
+                            No. 15, Rajamannar Salai, KK Nagar,
+                            Chennai 600 078
+                            {% endif %}
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SOCIAL LINKS -->
+
+                <div class="contact-socials">
+
+                    {% for social in social_links %}
+
+                    <a href="{{ social.url }}" target="_blank" rel="noopener noreferrer">
+
+                        {{ social.platform }}
+
+                    </a>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <!-- LOCATION IMAGE -->
+
+                {% if contact and contact.location_image %}
+
+                <div class="contact-location-image">
+
+                    <img src="{{ contact.location_image.url }}" alt="OG Creations Studio Location" loading="lazy">
+
+                </div>
+
+                {% endif %}
+
+
+                <!-- GOOGLE MAP -->
+                {% if contact and contact.map_embed_url %}
+                <div class="contact-map">
+                    <iframe src="{{ contact.map_embed_url }}" width="100%" height="200" style="border:0;"
+                        allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                {% endif %}
+
+            </div>
+
+
+            <!-- RIGHT SIDE: ENQUIRY FORM -->
+
+            <div class="contact-form-panel">
+
+                <form method="POST" action="{% url 'submit_enquiry' %}" class="contact-form">
+
+                    {% csrf_token %}
+
+
+                    <!-- FORM HEADING -->
+
+                    <h3>
+
+                        {% if contact %}
+                        {{ contact.form_heading }}
+                        {% else %}
+                        START A PROJECT
+                        {% endif %}
+
+                        <span>↗</span>
+
+                    </h3>
+
+
+                    <!-- SUCCESS / ERROR MESSAGES -->
+
+                    {% if messages %}
+
+                    <div class="contact-messages">
+
+                        {% for message in messages %}
+
+                        <p>{{ message }}</p>
+
+                        {% endfor %}
+
+                    </div>
+
+                    {% endif %}
+
+
+                    <!-- ROW 1: NAME AND PHONE -->
+
+                    <div class="contact-form-row">
+
+                        <div class="contact-input-group">
+
+                            <label for="contact-name">
+
+                                {% if contact %}
+                                {{ contact.name_label }}
+                                {% else %}
+                                FULL NAME *
+                                {% endif %}
+
+                            </label>
+
+                            <input type="text" id="contact-name" name="name"
+                                placeholder="{% if contact %}{{ contact.name_placeholder }}{% else %}Your name{% endif %}"
+                                value="{{ form.name.value|default:'' }}" required>
+
+                        </div>
+
+
+                        <div class="contact-input-group">
+
+                            <label for="contact-phone">
+
+                                {% if contact %}
+                                {{ contact.phone_form_label }}
+                                {% else %}
+                                PHONE NUMBER *
+                                {% endif %}
+
+                            </label>
+
+                            <input type="tel" id="contact-phone" name="phone"
+                                placeholder="{% if contact %}{{ contact.phone_placeholder }}{% else %}+91 98765 43210{% endif %}"
+                                value="{{ form.phone.value|default:'' }}" required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ROW 2: EMAIL AND SERVICE -->
+
+                    <div class="contact-form-row">
+
+                        <div class="contact-input-group">
+
+                            <label for="contact-email">
+
+                                {% if contact %}
+                                {{ contact.email_form_label }}
+                                {% else %}
+                                EMAIL ADDRESS *
+                                {% endif %}
+
+                            </label>
+
+                            <input type="email" id="contact-email" name="email"
+                                placeholder="{% if contact %}{{ contact.email_placeholder }}{% else %}you@example.com{% endif %}"
+                                value="{{ form.email.value|default:'' }}" required>
+
+                        </div>
+
+
+                        <div class="contact-input-group">
+
+                            <label for="contact-service">
+
+                                {% if contact %}
+                                {{ contact.service_label }}
+                                {% else %}
+                                SERVICE REQUIRED *
+                                {% endif %}
+
+                            </label>
+
+
+                            <select id="contact-service" name="service" required>
+
+                                <option value="" selected disabled>
+                                    {% if contact %}
+                                    {{ contact.service_placeholder }}
+                                    {% else %}
+                                    Select a service
+                                    {% endif %}
+                                </option>
+
+                                {% for option in contact_service_options %}
+                                <option value="{{ option.value }}">
+                                    {{ option.label }}
+                                </option>
+                                {% endfor %}
+
+                            </select>
+
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PROJECT DETAILS -->
+
+                    <div class="contact-input-group contact-message-group">
+
+                        <label for="contact-message">
+
+                            {% if contact %}
+                            {{ contact.message_label }}
+                            {% else %}
+                            PROJECT DETAILS *
+                            {% endif %}
+
+                        </label>
+
+                        <textarea id="contact-message" name="message"
+                            placeholder="{% if contact %}{{ contact.message_placeholder }}{% else %}Tell us about your project{% endif %}"
+                            rows="5" required>{{ form.message.value|default:'' }}</textarea>
+
+                    </div>
+
+
+                    <!-- SUBMIT BUTTON -->
+
+                    <button type="submit" class="contact-submit-btn">
+
+                        {% if contact %}
+                        {{ contact.submit_button_text }}
+                        {% else %}
+                        START A PROJECT
+                        {% endif %}
+
+                        <span>→</span>
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- END CONTACT SECTION -->
+
+
+    <!-- FOOTER SECTION -->
+
+    <footer class="main-footer">
+
+        <div class="footer-container">
+
+            <div class="footer-grid">
+
+                <!-- BRAND COLUMN -->
+
+                <div class="footer-brand">
+
+                    {% if site and site.logo %}
+
+                    <img src="{{ site.logo.url }}" alt="{{ site.company_name }}" class="footer-logo">
+
+                    {% endif %}
+
+                    <h3>
+                        {{ site.company_name|default:"OG CREATIONS" }}
+                    </h3>
+
+                    <span class="footer-tagline">
+                        {{ site.tagline|default:"CONCEPT TO CREATION" }}
+                    </span>
+
+                    <p>
+                        {{ site.footer_text|default:"Film and creative production, from concept to creation." }}
+                    </p>
+
+                </div>
+
+
+                <!-- NAVIGATION COLUMN -->
+
+                <div class="footer-column">
+
+                    <h4>NAVIGATE</h4>
+
+                    <ul>
+
+                        {% for link in footer_navigation %}
+
+                        <li>
+                            <a href="{{ link.url }}" {% if link.open_new_tab %} target="_blank"
+                                rel="noopener noreferrer" {% endif %}>
+                                {{ link.label }}
+                            </a>
+                        </li>
+
+                        {% empty %}
+
+                        <li>No navigation links added.</li>
+
+                        {% endfor %}
+
+                    </ul>
+
+
+
+                    <div class="footer-social">
+
+                        <h4>FOLLOW US</h4>
+
+                        <div class="footer-social-links">
+
+                            {% for social in social_links %}
+
+                            <a href="{{ social.url }}" target="_blank" rel="noopener noreferrer"
+                                aria-label="{{ social.platform }}" title="{{ social.platform }}">
+
+                                {% if social.platform|lower == "instagram" %}
+                                <i class="fa-brands fa-instagram"></i>
+
+                                {% elif social.platform|lower == "facebook" %}
+                                <i class="fa-brands fa-facebook-f"></i>
+
+                                {% elif social.platform|lower == "youtube" %}
+                                <i class="fa-brands fa-youtube"></i>
+
+                                {% elif social.platform|lower == "linkedin" %}
+                                <i class="fa-brands fa-linkedin-in"></i>
+
+                                {% elif social.platform|lower == "whatsapp" %}
+                                <i class="fa-brands fa-whatsapp"></i>
+
+                                {% elif social.platform|lower == "x" %}
+                                <i class="fa-brands fa-x-twitter"></i>
+
+                                {% endif %}
+
+                            </a>
+
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- SERVICES COLUMN -->
+
+                <div class="footer-column">
+
+                    <h4>SERVICES</h4>
+
+                    <ul>
+
+                        {% for link in footer_services %}
+
+                        <li>
+
+                            {% if link.url %}
+
+                            <a href="{{ link.url }}" {% if link.open_new_tab %} target="_blank"
+                                rel="noopener noreferrer" {% endif %}>
+                                {{ link.label }}
+                            </a>
+
+                            {% else %}
+
+                            <span>{{ link.label }}</span>
+
+                            {% endif %}
+
+                        </li>
+
+                        {% empty %}
+
+                        <li>No services added.</li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                </div>
+
+
+                <!-- CONTACT COLUMN -->
+
+                <div class="footer-column footer-contact">
+
+                    <h4>CONTACT</h4>
+
+                    {% if site.phone %}
+
+                    <p>
+                        <a href="tel:{{ site.phone }}">
+                            {{ site.phone }}
+                        </a>
+                    </p>
+
+                    {% endif %}
+
+                    {% if site.email %}
+
+                    <p>
+                        <a href="mailto:{{ site.email }}">
+                            {{ site.email }}
+                        </a>
+                    </p>
+
+                    {% endif %}
+
+                    {% if site.address %}
+
+                    <p>{{ site.address }}</p>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <!-- COPYRIGHT -->
+
+            <div class="footer-bottom">
+
+                <p>
+                    {{ site.copyright_text|default:"© 2026 OG CREATIONS. All rights reserved." }}
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <script src="{% static 'js/site.js' %}"></script>
+
+</body>
+
+</html>
