@@ -28,6 +28,24 @@ CSRF_TRUSTED_ORIGINS = [
     if origin.strip()
 ]
 
+
+# Production Security Settings
+
+SECURE_SSL_REDIRECT = not DEBUG
+
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+SESSION_COOKIE_SECURE = not DEBUG
+
+CSRF_COOKIE_SECURE = not DEBUG
+
+SECURE_HSTS_SECONDS = 31536000 if not DEBUG else 0
+
+SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+
+SECURE_HSTS_PRELOAD = False
+
+
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -36,6 +54,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "studio",
+    "cloudinary",
+    "cloudinary_storage",
 ]
 
 MIDDLEWARE = [
@@ -72,14 +92,14 @@ WSGI_APPLICATION = "ogcreations.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.mysql",
+        "ENGINE": "django.db.backends.postgresql",
         "NAME": os.getenv("DB_NAME"),
         "USER": os.getenv("DB_USER"),
         "PASSWORD": os.getenv("DB_PASSWORD"),
         "HOST": os.getenv("DB_HOST"),
-        "PORT": os.getenv("DB_PORT", "3306"),
+        "PORT": os.getenv("DB_PORT", "5432"),
         "OPTIONS": {
-            "charset": "utf8mb4",
+            "sslmode": "require",
         },
     }
 }
@@ -112,6 +132,20 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+CLOUDINARY_STORAGE = {
+    "MEDIA_TAG": "og_creations_media",
+    "PREFIX": "og_creations_media/",
+}
+
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
